@@ -1,9 +1,9 @@
 <div>
-  <h2>კლიენტის ძებნა</h2>
+  <h2 class="ui header">კლიენტის ძებნა</h2>
 
-  <div class="ui-segments">
+  <div class="ui segment">
 
-    <div class="ui-segment">
+    <div class="ui grid">
       <div class="input-container">
         <label>სახელი</label>
         <input name="name" type="text" [(ngModel)]="filter.name">
@@ -19,7 +19,7 @@
       <button (click)="search()">search</button>
     </div>
 
-    <div class="ui-segment">
+    <div class="ui grid">
       <table>
         <thead>
         <tr>

@@ -4,7 +4,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} fr
 import {NgIf} from "@angular/common";
 import {RegisterComponent} from "../register/register.component";
 import {Storage, users} from "../../shared/storage";
-import {AuthService} from "../../shared/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +19,7 @@ import {AuthService} from "../../shared/auth.service";
 })
 export class LoginComponent {
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router) {
 
   }
 
@@ -44,7 +43,7 @@ export class LoginComponent {
 
     const foundUser = users.find(user => user.username === this.username.value);
 
-    this.authService.login(this.username.value, this.password.value);
+    // this.authService.login(this.username.value, this.password.value);
 
     if (foundUser !== null && foundUser?.password === this.password.value) {
       sessionStorage.setItem('username', this.username.value);

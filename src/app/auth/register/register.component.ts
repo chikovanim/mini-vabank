@@ -3,7 +3,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, V
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {Storage, User, users} from "../../shared/storage";
-import {AuthService} from "../../shared/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -19,7 +18,7 @@ import {AuthService} from "../../shared/auth.service";
 })
 export class RegisterComponent {
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router) {
 
   }
 
@@ -127,7 +126,7 @@ export class RegisterComponent {
   onSubmit() {
     console.log('on submit called')
 
-    this.authService.registerUser(this.username.value, this.password.value);
+    // this.authService.registerUser(this.username.value, this.password.value);
 
     const newUser: User = {
       name: this.name.value.split(" ")[0],
