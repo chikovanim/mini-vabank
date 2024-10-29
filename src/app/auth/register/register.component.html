@@ -1,0 +1,39 @@
+<div class="registration" id="register">
+  <h2>რეგისტრაცია</h2>
+  <form name="regisration-form" (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" formControlName="username" id="username" placeholder="მომხმარებელი" [value]="this.registrationForm.value.username">
+        <div style="color: red; font-size: smaller" *ngIf="username.touched && !username.valid">
+          <p>{{username.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="input-data">
+        <input id="name" type="text" formControlName="name" placeholder="სახელი" [value]="this.registrationForm.value.name">
+        <div style="color: red; font-size: smaller" *ngIf="name.touched && !name.valid">
+          <p>{{name.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="input-data">
+        <input id="password" type="password" formControlName="password" placeholder="პაროლი" [value]="this.registrationForm.value.password">
+        <div style="color: red; font-size: smaller" *ngIf="password.touched && !password.valid">
+          <p>{{password.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="input-data">
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="პაროლის დამოწმება" [value]="this.registrationForm.value.confirmPassword">
+        <div style="color: red; font-size: smaller" *ngIf="confirmPassword.touched && !confirmPassword.valid">
+          <p>{{confirmPassword.errors?.['message']}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <a class="route-link" [routerLink]="['/login']"> შესვლა </a>
+      <button [disabled]="!registrationForm.valid" class="button-container" type="submit">რეგისტრაცია</button>
+    </div>
+  </form>
+
+</div>

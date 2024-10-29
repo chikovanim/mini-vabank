@@ -1,0 +1,56 @@
+.ui-segments {
+  border: black;
+  border-bottom-width: medium;
+}
+
+#search {
+  color: blue;
+  margin-left: 20px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ui-segment {
+  display: flex;
+  align-items: normal;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 5px;
+
+}
+
+.input-container {
+  margin-right: 20px;
+}
+
+.input-container label {
+  display: block;
+}
+
+button {
+  background-color: royalblue;
+  color: white;
+  border-color: white;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 31%;
+}
+
+thead {
+  width: 31%;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+  width: 33.33%; /* Equal width for three columns */
+}
+
+

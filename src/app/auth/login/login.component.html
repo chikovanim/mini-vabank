@@ -1,0 +1,27 @@
+<div class="login" id="login">
+  <h2>დალოგინება</h2>
+
+  <form name="login-form" (ngSubmit)="authorize()" [formGroup]="loginForm">
+    <div class="form-row">
+      <div class="input-data">
+        <input type="text" formControlName="username" id="username" placeholder="მომხმარებელი"
+               [value]="this.loginForm.value.username">
+        <div style="color: red; font-size: smaller" *ngIf="username.touched && !username.valid">
+          <p>{{username.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="input-data">
+        <input id="password" type="password" formControlName="password" placeholder="პაროლი"
+               [value]="this.loginForm.value.password">
+        <div style="color: red; font-size: smaller" *ngIf="password.touched && !password.valid">
+          <p>{{password.errors?.['message']}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <a class="route-link" [routerLink]="['/registration']">რეგისტრაცია</a>
+      <button [disabled]="!loginForm.valid" class="button-container" type="submit">შესვლა</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div>
+  <h2>კლიენტის ძებნა</h2>
+
+  <div class="ui-segments">
+
+    <div class="ui-segment">
+      <div class="input-container">
+        <label>სახელი</label>
+        <input name="name" type="text" [(ngModel)]="filter.name">
+      </div>
+      <div class="input-container">
+        <label>გვარი</label>
+        <input name="surname" type="text" [(ngModel)]="filter.surname">
+      </div>
+      <div class="input-container">
+        <label>კლიენტის უნიკალური</label>
+        <input name="clientKey" type="text" [(ngModel)]="filter.clientKey">
+      </div>
+      <button (click)="search()">search</button>
+    </div>
+
+    <div class="ui-segment">
+      <table>
+        <thead>
+        <tr>
+          <th>სახელი</th>
+          <th>გვარი</th>
+          <th>კლიენტის უნიკალური</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of usersList" (click)="selectUser(user)">
+          <td >{{ user.name }}</td>
+          <td>{{ user.surname }}</td>
+          <td>{{ user.clientKey }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
