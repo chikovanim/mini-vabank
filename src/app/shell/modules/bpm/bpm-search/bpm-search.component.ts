@@ -55,7 +55,7 @@ export class BpmSearchComponent implements OnInit {
     this.clientsToShow = this.clientList.filter(client =>
       (this.filter.name === '' || client.name.toLowerCase().includes(this.filter.name.toLowerCase()))
       && (this.filter.surname === '' || client.surname.toLowerCase().includes(this.filter.surname.toLowerCase()))
-      && (this.filter.clientKey === '' || client.clientKey.toString().includes(this.filter.clientKey)));
+      && (this.filter.clientKey === '' || (client.clientKey !== null && client.clientKey.toString().includes(this.filter.clientKey))));
 
     console.log(this.clientList.length)
   }
@@ -73,5 +73,14 @@ export class BpmSearchComponent implements OnInit {
 
   addClient() {
     this.router.navigate(['/client/new'])
+  }
+
+  removeClient(clientKey: number | null) {
+    this.apiService.removeClient(clientKey).subscribe(() => {
+      this.refreshClients();
+      this.clientsToShow = this.clientList;
+
+      // this.clientsToShow = this.clientsToShow.filter(client => client.clientKey !== clientKey);
+    });
   }
 }

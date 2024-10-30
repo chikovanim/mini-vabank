@@ -34,19 +34,22 @@
           <th>სახელი</th>
           <th>გვარი</th>
           <th>კლიენტის უნიკალური</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let client of clientsToShow" (click)="selectUser(client)">
-          <td >{{ client.name }}</td>
-          <td>{{ client.surname }}</td>
-          <td>{{ client.clientKey }}</td>
+        <tr *ngFor="let client of clientsToShow">
+          <td (click)="selectUser(client)">{{ client.name }}</td>
+          <td (click)="selectUser(client)">{{ client.surname }}</td>
+          <td (click)="selectUser(client)">{{ client.clientKey }}</td>
+          <td>
+            <button class="ui basic button" (click)="removeClient(client.clientKey)">
+              <i class="trash icon"></i>
+            </button>
         </tr>
         </tbody>
       </table>
-
     </div>
-
   </div>
 
 </div>

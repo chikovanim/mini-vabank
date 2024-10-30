@@ -3,8 +3,8 @@ export class Storage {
 }
 
 export class ClientModel {
-  constructor(clientKey: number, name: string, surname: string, username: string, email: string,
-              phone: string, address: string, city: string, country: string, postalCode: string, birthDate: string) {
+  constructor(clientKey: number, name: string, surname: string, username: string, email: string, phone: string,
+              address: string, city: string, country: string, postalCode: string, birthDate: string, plusPoints: number) {
     this.clientKey = clientKey;
     this.name = name;
     this.surname = surname;
@@ -16,19 +16,21 @@ export class ClientModel {
     this.country = country;
     this.postalCode = postalCode;
     this.birthDate = birthDate;
+    this.plusPoints = plusPoints;
   }
 
-  clientKey: number;
+  clientKey: number | null;
   name: string;
   surname: string;
-  username: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  country: string;
-  postalCode: string;
-  birthDate: string;
+  username: string | null;
+  email: string | null;
+  phone: string | null;
+  address: string | null;
+  city: string | null;
+  country: string | null;
+  postalCode: string | null;
+  birthDate: string | null;
+  plusPoints: number;
 }
 
 export class User {

@@ -20,7 +20,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   selectedClient: ClientModel = {name: '', surname: '', clientKey: 0, username: '', address: '', phone: '', birthDate: '',
-    city: '', country: '', email: '', postalCode: ''};
+    city: '', country: '', email: '', postalCode: '', plusPoints: 0};
 
   ngOnInit(): void {
 

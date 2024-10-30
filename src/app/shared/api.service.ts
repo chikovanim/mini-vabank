@@ -38,6 +38,10 @@ export class ApiService {
     return this.http.get<ClientModel>(this.BASE_URL + 'clients/' + id);
   }
 
+  removeClient(clientKey: number | null) {
+    return this.http.delete(this.BASE_URL + 'clients/' + clientKey);
+  }
+
   logout() {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('user-data');

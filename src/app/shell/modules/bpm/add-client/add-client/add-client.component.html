@@ -1,0 +1,34 @@
+<div class="registration" id="register">
+  <h2>კლიენტის რეგისტრაცია</h2>
+  <form name="regisration-form" (ngSubmit)="onSubmit()" [formGroup]="clientRegistrationForm">
+    <div class="form-row">
+      <br>
+      <div class="input-data">
+        <input id="name" type="text" formControlName="name" placeholder="სახელი" [value]="this.clientRegistrationForm.value.name">
+        <div style="color: red; font-size: smaller" *ngIf="name.touched && !name.valid">
+          <p>{{name.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="input-data">
+        <input type="text" formControlName="surname" id="surname" placeholder="გვარი" [value]="this.clientRegistrationForm.value.surname">
+        <div style="color: red; font-size: smaller" *ngIf="surname.touched && !surname.valid">
+          <p>{{surname.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="input-data">
+        <input id="pluspoints" type="number" formControlName="plus" placeholder="პლუს ქულები" [value]="this.clientRegistrationForm.value.plus">
+        <div style="color: red; font-size: smaller" *ngIf="plusPoints.touched && !plusPoints.valid">
+          <p>{{plusPoints.errors?.['message']}}</p>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="buttons">
+      <a class="route-link" [routerLink]="['/clients']"> შესვლა </a>
+      <button [disabled]="!clientRegistrationForm.valid" class="button-container" type="submit">შენახვა</button>
+    </div>
+  </form>
+
+</div>
