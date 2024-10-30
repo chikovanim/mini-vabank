@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
-import {FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {RegisterComponent} from "../register/register.component";
-import {Storage, users} from "../../shared/storage";
+import {AuthResponse} from "../../shared/storage";
+import {ApiService} from "../../shared/api.service";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +14,18 @@ import {Storage, users} from "../../shared/storage";
     RouterOutlet,
     ReactiveFormsModule,
     NgIf,
-    RouterLink
+    RouterLink,
+    HttpClientModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
-  constructor(private router: Router) {
+  private apiService: ApiService;
 
+  constructor(private router: Router, private http: HttpClient) {
+    this.apiService = new ApiService(http);
   }
 
   loginForm: FormGroup<LoginInfo> = new FormGroup<LoginInfo>({
@@ -39,19 +44,17 @@ export class LoginComponent {
   authorize() {
     console.log('authorizing user with username: ' + this.username.value)
 
-    console.log('users size: ' + users.length)
+    this.apiService.authorize(this.username.value, this.password.value).subscribe((response: AuthResponse) => {
 
-    const foundUser = users.find(user => user.username === this.username.value);
+      if (response.success) {
+        sessionStorage.setItem('username', this.username.value);
+        sessionStorage.setItem('user-data', JSON.stringify(response.user));
 
-    // this.authService.login(this.username.value, this.password.value);
-
-    if (foundUser !== null && foundUser?.password === this.password.value) {
-      sessionStorage.setItem('username', this.username.value);
-      sessionStorage.setItem('password', this.password.value);
-    } else {
-      window.alert('მომხმარებლის სახელი ან პაროლი არასწორია');
-    }
-    this.router.navigate(['/clients'])
+        this.router.navigate(['/clients'])
+      } else {
+        window.alert('მომხმარებლის სახელი ან პაროლი არასწორია');
+      }
+    });
   }
 }
 

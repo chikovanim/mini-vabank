@@ -2,7 +2,9 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
-import {Storage, User, users} from "../../shared/storage";
+import {User} from "../../shared/storage";
+import {ApiService} from "../../shared/api.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
@@ -11,15 +13,18 @@ import {Storage, User, users} from "../../shared/storage";
     FormsModule,
     NgIf,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    HttpClientModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
 
-  constructor(private router: Router) {
+  private apiService: ApiService;
 
+  constructor(private router: Router, private http: HttpClient) {
+    this.apiService = new ApiService(http);
   }
 
   public static usernameValidator: ValidatorFn = (control) => {
@@ -126,20 +131,17 @@ export class RegisterComponent {
   onSubmit() {
     console.log('on submit called')
 
-    // this.authService.registerUser(this.username.value, this.password.value);
-
     const newUser: User = {
       name: this.name.value.split(" ")[0],
       username: this.username.value,
       surname: this.name.value.split(" ").length > 1 ? this.name.value.split(" ")[1] : this.name.value.split(" ")[0],
       password: this.password.value,
-      clientKey: Math.floor(Math.random() * 9999999),
+      email: this.username.value + '@bog.ge',
       created: new Date(),
     };
     console.log('registering user: ' + JSON.stringify(newUser));
 
-    users.push(newUser)
-    // Storage.addUser(newUser);
+    this.apiService.register(newUser);
 
     this.router.navigate(['/login'])
   }}

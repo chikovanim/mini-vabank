@@ -19,8 +19,16 @@
       <button (click)="search()">search</button>
     </div>
 
-    <div class="ui grid">
-      <table>
+    <div class="ui grid" style="margin-top: 50px">
+      <div class="ui grid" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <h4 class="ui header">კლიენტები</h4>
+
+        <button class="ui basic button" style="font-size: 14px; padding: 7px 12px;" (click)="addClient()">
+          <i class="icon user"></i>
+          Add Client
+        </button>
+      </div>
+      <table class="ui celled table">
         <thead>
         <tr>
           <th>სახელი</th>
@@ -29,10 +37,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of usersList" (click)="selectUser(user)">
-          <td >{{ user.name }}</td>
-          <td>{{ user.surname }}</td>
-          <td>{{ user.clientKey }}</td>
+        <tr *ngFor="let client of clientsToShow" (click)="selectUser(client)">
+          <td >{{ client.name }}</td>
+          <td>{{ client.surname }}</td>
+          <td>{{ client.clientKey }}</td>
         </tr>
         </tbody>
       </table>

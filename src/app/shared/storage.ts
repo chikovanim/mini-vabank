@@ -1,20 +1,43 @@
 export class Storage {
 
-  static addUser(user: User) {
-    users.push(user);
-
-    console.log('added new user: ' + JSON.stringify(user));
-  }
 }
 
+export class ClientModel {
+  constructor(clientKey: number, name: string, surname: string, username: string, email: string,
+              phone: string, address: string, city: string, country: string, postalCode: string, birthDate: string) {
+    this.clientKey = clientKey;
+    this.name = name;
+    this.surname = surname;
+    this.username = username;
+    this.email = email;
+    this.phone = phone;
+    this.address = address;
+    this.city = city;
+    this.country = country;
+    this.postalCode = postalCode;
+    this.birthDate = birthDate;
+  }
+
+  clientKey: number;
+  name: string;
+  surname: string;
+  username: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  country: string;
+  postalCode: string;
+  birthDate: string;
+}
 
 export class User {
-  constructor(name: string, username: string, surname: string, password: string, clientKey: number, created: Date) {
+  constructor(name: string, username: string, surname: string, password: string, email: string, created: Date) {
     this.name = name;
     this.username = username;
     this.surname = surname;
     this.password = password;
-    this.clientKey = clientKey;
+    this.email = email;
     this.created = created;
   }
 
@@ -22,11 +45,13 @@ export class User {
   username: string;
   surname: string;
   password: string;
-  clientKey: number;
+  email: string;
   created: Date
 }
 
-export var users: User[] = [
-  {name: "seungmin", password: "pass", username: "seungmin", surname: "rizzler", clientKey: Math.floor(Math.random() * 9999999), created: new Date()},
-  {name: "davit", password: "pass", username: "monke", surname: "chiko", clientKey: Math.floor(Math.random() * 9999999), created: new Date()}
-]
+export class AuthResponse {
+  // @ts-ignore
+  success: boolean;
+  // @ts-ignore
+  user: User;
+}

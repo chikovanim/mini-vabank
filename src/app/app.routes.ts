@@ -5,6 +5,7 @@ import {RegisterComponent} from "./auth/register/register.component";
 import {BpmSearchComponent} from "./shell/modules/bpm/bpm-search/bpm-search.component";
 import {ShellGuard} from "./shell.guard";
 import {UserInfoComponent} from "./shell/modules/bpm/user-info/user-info.component";
+import {AddClientComponent} from "./shell/modules/bpm/add-client/add-client/add-client.component";
 
 export const routes: Routes = [
   {
@@ -29,8 +30,13 @@ export const routes: Routes = [
     canActivate: [ShellGuard]
   },
   {
-    path: 'client/:id',
+    path: 'clients/:id',
     component: UserInfoComponent,
+    canActivate: [ShellGuard]
+  },
+  {
+    path: 'client/new',
+    component: AddClientComponent,
     canActivate: [ShellGuard]
   }
 ];
