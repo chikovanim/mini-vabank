@@ -1,0 +1,23 @@
+<div class="ui grid" style="width: 100%; display: flex; align-items: center; padding: 10px;">
+
+  <div class="item profile-section" style="display: flex; align-items: center;">
+    <img src="https://www.clipartmax.com/png/middle/206-2067523_man-face-roblox-roblox-faces.png"
+         alt="Profile Picture" class="ui avatar image profile-avatar"
+         style="font-size: 45px; margin-right: 10px;">
+    <div class="content user-info">
+      <div class="header">მომხმარებელი : {{username}}</div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <div style="margin-left: auto; display: flex; gap: 15px;">
+    <a routerLink="/bpm/clients" routerLinkActive="active" class="item">
+      <i class="search icon"></i> კლიენტები
+    </a>
+
+    <a routerLink="/login" routerLinkActive="active" class="item" (click)="logout()">
+      <i class="logout icon"></i> გასვლა
+    </a>
+  </div>
+</div>

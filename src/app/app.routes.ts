@@ -6,6 +6,7 @@ import {BpmSearchComponent} from "./shell/modules/bpm/bpm-search/bpm-search.comp
 import {ShellGuard} from "./shell.guard";
 import {UserInfoComponent} from "./shell/modules/bpm/user-info/user-info.component";
 import {AddClientComponent} from "./shell/modules/bpm/add-client/add-client/add-client.component";
+import {ShellComponent} from "./shell/shell.component";
 
 export const routes: Routes = [
   {
@@ -24,19 +25,27 @@ export const routes: Routes = [
     component: RegisterComponent,
     canActivate: [LoginGuard]
   },
+
   {
-    path: 'clients',
-    component: BpmSearchComponent,
-    canActivate: [ShellGuard]
-  },
-  {
-    path: 'clients/:id',
-    component: UserInfoComponent,
-    canActivate: [ShellGuard]
-  },
-  {
-    path: 'client/new',
-    component: AddClientComponent,
-    canActivate: [ShellGuard]
+    path: 'bpm',
+    component: ShellComponent,
+    canActivate: [ShellGuard],
+    children: [
+      {
+        path: 'clients',
+        component: BpmSearchComponent,
+        canActivate: [ShellGuard]
+      },
+      {
+        path: 'clients/:id',
+        component: UserInfoComponent,
+        canActivate: [ShellGuard]
+      },
+      {
+        path: 'client/new',
+        component: AddClientComponent,
+        canActivate: [ShellGuard]
+      }
+    ]
   }
 ];

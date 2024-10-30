@@ -78,9 +78,7 @@ export class BpmSearchComponent implements OnInit {
   removeClient(clientKey: number | null) {
     this.apiService.removeClient(clientKey).subscribe(() => {
       this.refreshClients();
-      this.clientsToShow = this.clientList;
-
-      // this.clientsToShow = this.clientsToShow.filter(client => client.clientKey !== clientKey);
+      this.clientsToShow = this.clientsToShow.filter(client => client.clientKey !== clientKey);
     });
   }
 }

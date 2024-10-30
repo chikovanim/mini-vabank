@@ -12,7 +12,7 @@ export class ShellGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
 
-    const authenticated = true;//sessionStorage.getItem("username") !== undefined && sessionStorage.getItem("username") !== null;
+    const authenticated = sessionStorage.getItem("username") !== undefined && sessionStorage.getItem("username") !== null;
 
     if (!authenticated) {
       this.router.navigate(['/login']);
